@@ -1,85 +1,83 @@
-extends CharacterBody2D
+[gd_scene load_steps=2 format=3]
 
-@export var player_id: int = 1
-@export var speed: float = 300.0
+[ext_resource type="Script" path="res://MainMenu.gd" id="1_efm9x"]
 
-@onready var body_rect: ColorRect = $Body
-@onready var shield_visual: ColorRect = $ShieldVisual
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_efm9x")
 
-var is_shielded: bool = false
-var is_speed_boosted: bool = false
-var alive: bool = true
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.027, 0.08, 0.15, 1)
 
-func _ready() -> void:
-	add_to_group("players")
-	_apply_color()
-	_update_visuals()
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -250.0
+offset_right = 220.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
 
-func _apply_color() -> void:
-	if player_id == 1:
-		body_rect.color = Global.p1_color
-	else:
-		body_rect.color = Global.p2_color
+[node name="Panel/MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-func _update_visuals() -> void:
-	shield_visual.visible = false
+[node name="Panel/MarginContainer/VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
 
-func _physics_process(_delta: float) -> void:
-	if not alive:
-		return
+[node name="Panel/MarginContainer/VBoxContainer/TitleLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Dodge Bomb"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-	var direction := get_input_vector()
-	var current_speed := speed
-	if is_speed_boosted:
-		current_speed *= 1.5
+[node name="Panel/MarginContainer/VBoxContainer/SoloButton" type="Button" parent="."]
+layout_mode = 2
+text = "Solo Mode"
 
-	if direction.length() > 0.1:
-		velocity = direction.normalized() * current_speed
-	else:
-		velocity = Vector2.ZERO
+[node name="Panel/MarginContainer/VBoxContainer/Local2PButton" type="Button" parent="."]
+layout_mode = 2
+text = "2-Player Local Mode"
 
-	move_and_slide()
+[node name="Panel/MarginContainer/VBoxContainer/LobbyButton" type="Button" parent="."]
+layout_mode = 2
+text = "Host / Join Lobby"
 
-func get_input_vector() -> Vector2:
-	var input_vector := Vector2.ZERO
-	if player_id == 1:
-		input_vector.x = Input.get_axis("move_left_p1", "move_right_p1")
-		input_vector.y = Input.get_axis("move_up_p1", "move_down_p1")
-	else:
-		input_vector.x = Input.get_axis("move_left_p2", "move_right_p2")
-		input_vector.y = Input.get_axis("move_up_p2", "move_down_p2")
+[node name="Panel/MarginContainer/VBoxContainer/PlayerColorsButton" type="Button" parent="."]
+layout_mode = 2
+text = "Player Colors"
 
-	return input_vector
+[node name="Panel/MarginContainer/VBoxContainer/ExitButton" type="Button" parent="."]
+layout_mode = 2
+text = "Exit Game"
 
-func apply_shield() -> void:
-	is_shielded = true
-	shield_visual.visible = true
-	shield_visual.color = Color("#7BDFF2")
-	shield_visual.size = Vector2(42, 42)
-
-func apply_speed_boost() -> void:
-	if is_speed_boosted:
-		return
-
-	is_speed_boosted = true
-	await get_tree().create_timer(5.0).timeout
-	if is_inside_tree():
-		is_speed_boosted = false
-
-func eliminate() -> void:
-	if not alive:
-		return
-
-	if is_shielded:
-		is_shielded = false
-		shield_visual.visible = false
-		return
-
-	alive = false
-	visible = false
-	set_physics_process(false)
-	collision_layer = 0
-	collision_mask = 0
-
-func is_alive() -> bool:
-	return alive
+[node name="Panel/MarginContainer/VBoxContainer/LobbyCodeLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Lobby Code: --"
+horizontal_alignment = 1
