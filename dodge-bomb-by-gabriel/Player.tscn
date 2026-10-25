@@ -1,117 +1,27 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://Arena.gd" id="1_i2j4k"]
+[ext_resource type="Script" path="res://Player.gd" id="1_3w4v7"]
 
-[node name="Arena" type="Node2D"]
-script = ExtResource("1_i2j4k")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(24, 24)
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.027, 0.08, 0.15, 1)
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3w4v7")
 
-[node name="Players" type="Node2D" parent="."]
+[node name="Body" type="ColorRect" parent="."]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+color = Color(0.09, 0.46, 1, 1)
 
-[node name="Bombs" type="Node2D" parent="."]
-
-[node name="Pickups" type="Node2D" parent="."]
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="TimerLabel" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = 20.0
-offset_right = 100.0
-offset_bottom = 60.0
-grow_horizontal = 2
-text = "00:00.0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LobbyCodeLabel" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -120.0
-offset_top = 50.0
-offset_right = 120.0
-offset_bottom = 90.0
-grow_horizontal = 2
-text = "Lobby Code: --"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameOverPanel" type="Panel" parent="HUD"]
+[node name="ShieldVisual" type="ColorRect" parent="."]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.48, 0.87, 0.95, 1)
 
-[node name="FinalTimeLabel" type="Label" parent="HUD/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -110.0
-offset_top = 20.0
-offset_right = 110.0
-offset_bottom = 60.0
-grow_horizontal = 2
-text = "Final Survival Time"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WinnerLabel" type="Label" parent="HUD/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -110.0
-offset_top = 60.0
-offset_right = 110.0
-offset_bottom = 100.0
-grow_horizontal = 2
-text = "Game Over"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RetryButton" type="Button" parent="HUD/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -95.0
-offset_right = 90.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Retry"
-
-[node name="MainMenuButton" type="Button" parent="HUD/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -40.0
-offset_right = 90.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Main Menu"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
