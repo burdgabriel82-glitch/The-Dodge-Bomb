@@ -1,80 +1,117 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://PlayerColors.gd" id="1_6m3p7"]
+[ext_resource type="Script" path="res://Arena.gd" id="1_jl8m7"]
 
-[node name="PlayerColors" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Arena" type="Node2D"]
+script = ExtResource("1_jl8m7")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.027, 0.08, 0.15, 1)
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Bombs" type="Node2D" parent="."]
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUD/TimerLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_6m3p7")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 40.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Player Colors"
+text = "00:00.0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HFlowContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="P1Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/HFlowContainer"]
-layout_mode = 2
-text = "P1 Selected"
-
-[node name="P2Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/HFlowContainer"]
-layout_mode = 2
-text = "P2"
-
-[node name="SelectedPlayerLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Editing: Player 1"
+[node name="HUD/LobbyCodeLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 50.0
+offset_right = 120.0
+offset_bottom = 90.0
+grow_horizontal = 2
+text = "Lobby Code: --"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ColorRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
+[node name="HUD/GameOverPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="P1Preview" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/ColorRow"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-color = Color(0.09, 0.46, 1, 1)
+[node name="HUD/GameOverPanel/FinalTimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "Final Survival Time"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="P2Preview" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/ColorRow"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-color = Color(1, 0.23, 0.19, 1)
+[node name="HUD/GameOverPanel/WinnerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 60.0
+offset_right = 110.0
+offset_bottom = 100.0
+grow_horizontal = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PaletteGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-columns = 5
+[node name="HUD/GameOverPanel/RetryButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -95.0
+offset_right = 90.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Retry"
 
-[node name="BackButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Back to Menu"
+[node name="HUD/GameOverPanel/MainMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -40.0
+offset_right = 90.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Main Menu"
