@@ -34,7 +34,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel/MarginContainer" type="MarginContainer" parent="."]
+[node name="Panel/MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,38 +46,38 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel/MarginContainer/VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Panel/MarginContainer/VBoxContainer/TitleLabel" type="Label" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Dodge Bomb"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel/MarginContainer/VBoxContainer/SoloButton" type="Button" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/SoloButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Solo Mode"
 
-[node name="Panel/MarginContainer/VBoxContainer/Local2PButton" type="Button" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/Local2PButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "2-Player Local Mode"
 
-[node name="Panel/MarginContainer/VBoxContainer/LobbyButton" type="Button" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/LobbyButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host / Join Lobby"
 
-[node name="Panel/MarginContainer/VBoxContainer/PlayerColorsButton" type="Button" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/PlayerColorsButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Player Colors"
 
-[node name="Panel/MarginContainer/VBoxContainer/ExitButton" type="Button" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/ExitButton" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
 
-[node name="Panel/MarginContainer/VBoxContainer/LobbyCodeLabel" type="Label" parent="."]
+[node name="Panel/MarginContainer/VBoxContainer/LobbyCodeLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Lobby Code: --"
 horizontal_alignment = 1
